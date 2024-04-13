@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Coroutines and Flows on Android</string>
+    <string name="perform_single_network_request_on_background_thread">Load recent Android Versions</string>
+    <string name="perform_2_network_requests_sequentially">Load Features of most recent Android Version</string>
+    <string name="load_features_of_android_versions_sequentially">Load Features of Android Versions sequentially</string>
+    <string name="load_features_of_android_versions_concurrently">Load Features of Android Versions concurrently</string>
+    <string name="duration">Operation took %d ms</string>
+    <string name="duration_calculation">Calculation took %d ms</string>
+    <string name="duration_stringconversion">Converting BigInteger to String took %d ms</string>
+    <string name="timeout">TimeOut in ms: </string>
+    <string name="load_android_versions">Load Android Versions</string>
+    <string name="clear_database">Clear Database</string>
+    <string name="loading_data_from_database">loading data from database</string>
+    <string name="loading_data_from_network">loading data from network</string>
+    <string name="load_recent_android_versions_and_do_some_calculations">Load Recent Android Versions and do some calculations</string>
+    <string name="factorial_of">Factorial of:</string>
+    <string name="calculate">Calculate</string>
+    <string name="number_of_coroutines">Number of Coroutines:</string>
+    <string name="device_cores">Your device has %d cores</string>
+    <string name="cancel">Cancel</string>
+    <string name="workmanager_request">A work manager worker was requested to send an analytics request.</string>
+    <string name="dispatcher">Coroutine Dispatcher:</string>
+    <string name="yield_during_calculation">yield() during calculation</string>
+
+    <string-array name="dispatchers">
+        <item>Default</item>
+        <item>IO</item>
+        <item>Main</item>
+        <item>Unconfined</item>
+    </string-array>
+    <string name="title_activity_flow_usecase1">Leanback activity_flow_usecase1</string>
+    <string name="browse_title">Videos by Your Company</string>
+    <string name="related_movies">Related Videos</string>
+    <string name="grid_view">Grid View</string>
+    <string name="error_fragment">Error Fragment</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="watch_trailer_1">Watch trailer</string>
+    <string name="watch_trailer_2">FREE</string>
+    <string name="rent_1">Rent By Day</string>
+    <string name="rent_2">From $1.99</string>
+    <string name="buy_1">Buy and Own</string>
+    <string name="buy_2">AT $9.99</string>
+    <string name="movie">Movie</string>
+
+    <!-- Error messages -->
+    <string name="error_fragment_message">An error occurred</string>
+    <string name="dismiss_error">Dismiss</string>
+</resources>
