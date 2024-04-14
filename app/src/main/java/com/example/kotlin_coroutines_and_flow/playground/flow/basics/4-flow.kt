@@ -1,6 +1,6 @@
 package com.example.kotlin_coroutines_and_flow.playground.flow.basics
 
-import com.example.kotlin_coroutines_and_flow.utils.printWithTimePassed
+import com.example.kotlin_coroutines_and_flow.playground.utils.printWithTimePassed
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow

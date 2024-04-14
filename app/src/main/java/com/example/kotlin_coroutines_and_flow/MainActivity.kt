@@ -5,7 +5,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_coroutines_and_flow.base.BaseActivity
+import com.example.kotlin_coroutines_and_flow.base.UseCaseActivity
 import com.example.kotlin_coroutines_and_flow.base.UseCaseCategory
+import com.example.kotlin_coroutines_and_flow.base.UseCaseCategoryAdapter
+import com.example.kotlin_coroutines_and_flow.base.useCaseCategories
+import com.example.kotlin_coroutines_and_flow.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
 
