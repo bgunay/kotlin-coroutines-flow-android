@@ -22,7 +22,7 @@ Android version.
 
 
 ## ✍️ Related blog posts
-* 7 Common Mistakes you might be making when using Kotlin Coroutines [[link](https://www.lukaslechner.com/7-common-mistakes-you-might-be-making-when-using-kotlin-coroutines/)]
+* 7 Common Mistakes you might be making when using Kotlin Coroutines [[link](https://www.m/7-common-mistakes-you-might-be-making-when-using-kotlin-coroutines/)]
 * Why exception handling with Kotlin Coroutines is so hard and how to successfully master it! [[link](https://www.lukaslechner.com/why-exception-handling-with-kotlin-coroutines-is-so-hard-and-how-to-successfully-master-it/)]
 * Kotlin Coroutines exception handling cheat sheet [[link](https://www.lukaslechner.com/coroutines-exception-handling-cheat-sheet/)]
 * Understanding Kotlin Coroutines with this mental model [[link](https://www.lukaslechner.com/understanding-kotlin-coroutines-with-this-mental-model/)]
@@ -62,17 +62,17 @@ Android version.
 
 This use case performs a single network request to get the latest Android Versions and displays them on the screen.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase1/PerformSingleNetworkRequestViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase1/PerformSingleNetworkRequestViewModel.kt)]
 
 ### 2. Perform two sequential network requests
 
 This use case performs two network requests sequentially. First, it retrieves recent Android Versions and then it requests the features of the latest version.
 
-There are also 2 alternative implementations included. One is using old-school [callbacks](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase2/callbacks/SequentialNetworkRequestsCallbacksViewModel.kt).
-The other one uses [RxJava](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase2/rx/SequentialNetworkRequestsRxViewModel.kt). You can compare each implementation.
+There are also 2 alternative implementations included. One is using old-school [callbacks](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase2/callbacks/SequentialNetworkRequestsCallbacksViewModel.kt).
+The other one uses [RxJava](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase2/rx/SequentialNetworkRequestsRxViewModel.kt). You can compare each implementation.
 If you compare all three implementations, it is really interesting to see, in my opinion, how simple the Coroutine-based version actually is.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase2/Perform2SequentialNetworkRequestsViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase2/Perform2SequentialNetworkRequestsViewModel.kt)]
 
 ### 3. Perform several network requests concurrently
 
@@ -81,14 +81,14 @@ that performs the requests sequentially is included. The UI shows how much time 
 requests in the concurrent version are indeed performed in parallel. The included unit test is also interesting, as it shows how you can use virtual time to
 verify that the concurrent version gets performed in parallel.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase3/PerformNetworkRequestsConcurrentlyViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase3/PerformNetworkRequestsConcurrentlyViewModel.kt)]
 
 ### 4. Perform variable amount of network requests
 
 Demonstrates the simple usage of `map()` to perform a dynamic amount of network requests. At first, this use case performs a network request to load all Android versions.
 Then it performs a network request for each Android version to load its features. It contains an implementation that performs the network requests sequentially and another one that performs them concurrently.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase4/VariableAmountOfNetworkRequestsViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase4/VariableAmountOfNetworkRequestsViewModel.kt)]
 
 ### 5. Perform network request with timeout
 
@@ -97,7 +97,7 @@ You can set the duration of the request in the UI and check the behaviour when t
 
 General networking timeouts can also be [configured in the okhttp client](https://square.github.io/okhttp/recipes/#timeouts-kt-java).
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase5/NetworkRequestWithTimeoutViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase5/NetworkRequestWithTimeoutViewModel.kt)]
 
 ### 6. Retrying network requests
 
@@ -105,7 +105,7 @@ Demonstrates the usage of higher-order functions together with coroutines. The h
 It uses an exponential backoff for retries, which means that the delay between retries increases exponentially. The behavior of the Mock API is defined in a way that it responses
 with 2 unsuccessful responses followed by a successful response.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase6/RetryNetworkRequestViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase6/RetryNetworkRequestViewModel.kt)]
 
 Unit tests verify the amount of requests that are performed in different scenarios. Furthermore, they check if the exponential backoff is working properly
 by asserting the amount of elapsed virtual time.
@@ -115,11 +115,11 @@ by asserting the amount of elapsed virtual time.
 Composes higher level functions `retry()` and `withTimeout()`. Demonstrates how simple and readable code written with Coroutines can be.
 The mock API first responds after the timeout and then returns an unsuccessful response. The third attempt is then successful.
 
-Take a look at the included [callback-based implementation](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase7/callbacks/TimeoutAndRetryCallbackViewModel.kt) to see how tricky this use case is to implement without Coroutines.
+Take a look at the included [callback-based implementation](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase7/callbacks/TimeoutAndRetryCallbackViewModel.kt) to see how tricky this use case is to implement without Coroutines.
 
-I also implemented the use case with [RxJava](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase7/rx/TimeoutAndRetryRxViewModel.kt).
+I also implemented the use case with [RxJava](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase7/rx/TimeoutAndRetryRxViewModel.kt).
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase7/TimeoutAndRetryViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase7/TimeoutAndRetryViewModel.kt)]
 
 ### 8. Room and Coroutines
 
@@ -127,7 +127,7 @@ This example stores the response data of each network request in a Room database
 If the `View` requests data, the `ViewModel` first checks if there is data available in the database. If so, this data is returned before performing
 a network request to get fresh data.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase8/RoomAndCoroutinesViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase8/RoomAndCoroutinesViewModel.kt)]
 
 ### 9. Debugging Coroutines
 
@@ -135,7 +135,7 @@ This is not really a use case, but I wanted to show how you can add additional d
 It will add the Coroutine name next to the thread name when calling `Thread.currentThread.name()`
 This is done by enabling Coroutine Debug mode by setting the property `kotlinx.coroutines.debug` to `true`.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase9/DebuggingCoroutinesViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase9/DebuggingCoroutinesViewModel.kt)]
 
 ### 10. Offload expensive calculation to background thread
 
@@ -143,7 +143,7 @@ This use case calculates the factorial of a number. The calculation is performed
 
 **Attention: This use case does not support cancellation! UseCase#11 fixes this!**
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase10/CalculationInBackgroundViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase10/CalculationInBackgroundViewModel.kt)]
 
 In the respective unit test, we have to pass the testDispatcher to the ViewModel, so that the calculation is not performed on a background thread but on the main thread.
 
@@ -156,21 +156,21 @@ Button. Note: Only the calculation can be canceled prematurely but not the `toSt
 There are several ways to make your coroutines cooperative regarding cancellation: You can use either use `isActive()`, `ensureActive()` or `yield()`.
 More information about cancellation can be found [here](https://medium.com/androiddevelopers/exceptions-in-coroutines-ce8da1ec060c)
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase11/CooperativeCancellationViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase11/CooperativeCancellationViewModel.kt)]
 
 ### 12. Offload expensive calculation to several Coroutines
 
 The factorial calculation here is not performed by a single coroutine, but by a number of coroutines that can be defined in the UI. Each coroutine calculates the factorial of a sub-range.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase12/CalculationInSeveralCoroutinesViewModel.kt)]
-[[code factorial calculator](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase12/FactorialCalculator.kt)]
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase12/CalculationInSeveralCoroutinesViewModel.kt)]
+[[code factorial calculator](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase12/FactorialCalculator.kt)]
 
 ### 13. Exception Handling
 
 This use case demonstrates different ways of handling exceptions using `try/catch` and `CoroutineExceptionHandler`. It also demonstrates when you should use `supervisorScope{}`: In situations when you don't want a failing coroutine to cancel
 its sibling coroutines. In one implementation of this use case, the results of the successful responses are shown even though one response wasn't successful.
 
-[[code](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase13/ExceptionHandlingViewModel.kt)]
+[[code](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase13/ExceptionHandlingViewModel.kt)]
 
 ### 14. Continue Coroutine execution when the user leaves the screen
 
@@ -182,8 +182,8 @@ cache when the user leaves the screen. This makes sense in real-world applicatio
 You can test this behavior in the UI by clearing the database, then loading the Android version and instantly closing the screen. You will see in LogCat that the response
 still gets executed and the result still gets stored. The respective unit test `AndroidVersionRepositoryTest` also verifies this behavior. Check out this [blogpost](https://medium.com/androiddevelopers/coroutines-patterns-for-work-that-shouldnt-be-cancelled-e26c40f142ad) for details of the implementation.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase14/ContinueCoroutineWhenUserLeavesScreenViewModel.kt)]
-[[code repository](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase14/AndroidVersionRepository.kt)]
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase14/ContinueCoroutineWhenUserLeavesScreenViewModel.kt)]
+[[code repository](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase14/AndroidVersionRepository.kt)]
 
 ### 15. Using WorkManager with Coroutines
 
@@ -191,8 +191,8 @@ Demonstrates how you can use WorkManager together with Coroutines. When creating
 the `doWork()` function is now a `suspend function` which means that we can now call other suspend functions. In this
 example, we are sending an analytics request when the user enters the screen, which is a nice use case for using WorkManager.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase15/WorkManagerViewModel.kt)]
-[[code worker](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/coroutines/usecase15/AnalyticsWorker.kt)]
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase15/WorkManagerViewModel.kt)]
+[[code worker](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/coroutines/usecase15/AnalyticsWorker.kt)]
 
 
 ### 16. Performance analysis of dispatchers, number of coroutines and yielding
@@ -220,16 +220,16 @@ The datasource exposes a `Flow` which is built with the `flow{}` flow builder. I
 A `LiveData` property that exposes the `UiState` in the `ViewModel` is created by using the `.asLiveData()` terminal operator.
 This use case also shows how to use the `map` intermediate operator and the `onStart` lifecycle operator.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase1/FlowUseCase1ViewModel.kt)]
-[[code datasource](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase1/StockPriceDataSource.kt)]
-
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase1/FlowUseCase1ViewModel.kt)]
+[[code datasource](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase1/StockPriceDataSource.kt)]
+1
 ### 2. Basic Flow Intermediate Operators
 
 The second use case is an extension of the first one.
 It uses some basic intermediate operators, like `withIndex`, `map`, `take` and `filter`.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase2/FlowUseCase2ViewModel.kt)]
-[[code datasource](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase2/StockPriceDataSource.kt)]
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase2/FlowUseCase2ViewModel.kt)]
+[[code datasource](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase2/StockPriceDataSource.kt)]
 
 ### 3. Flow Exception Handling
 
@@ -237,8 +237,8 @@ The third use case shows how to properly implement exception handling with flows
 
 It uses the `catch` operator to handle exceptions of our flow in the `ViewModel` and uses the `retry ` operator to retry failed network requests in the `DataSource`.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase3/FlowUseCase3ViewModel.kt)]
-[[code datasource](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase3/StockPriceDataSource.kt)]
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase3/FlowUseCase3ViewModel.kt)]
+[[code datasource](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase3/StockPriceDataSource.kt)]
 
 ### 4. Exposing Flows in the ViewModel
 
@@ -247,8 +247,8 @@ The `statIn` operator is used to convert the ordinary, cold `Flow` into a hot `S
 
 In the `Activity`, the `repeadOnLifecycle` suspend function is used to collect emissions of the `StateFlow` in a lifecycle-aware manner.
 
-[[code viewmodel](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase4/FlowUseCase4ViewModel.kt)]
-[[code datasource](app/src/main/java/com/lukaslechner/coroutineusecasesonandroid/usecases/flow/usecase4/StockPriceDataSource.kt)]
+[[code viewmodel](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase4/FlowUseCase4ViewModel.kt)]
+[[code datasource](app/src/main/java/com/example/kotlin_coroutines_and_flow/usecases/flow/usecase4/StockPriceDataSource.kt)]
 
 
 ## License
@@ -265,3 +265,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 You agree that all contributions to this repository, in the form of fixes, pull-requests, new examples etc. follow the above-mentioned license.
+
+Credit: lukaslechner (https://github.com/LukasLechnerDev)
